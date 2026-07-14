@@ -1,0 +1,56 @@
+let count = 0;
+
+const countHeader = document.getElementById("count");
+const addBtn = document.getElementById("add-button");
+const subBtn = document.getElementById("sub-button");
+
+countHeader.innerText = count;
+
+addBtn.addEventListener("click", function () {
+  if (count < 10) {
+    count++;
+    countHeader.innerText = count;
+  }
+});
+
+subBtn.addEventListener("click", function () {
+  if (count > 0) {
+    count--;
+    countHeader.innerText = count;
+  }
+});
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="counter-container">
+      <h4>The current counter is ...</h4>
+      <h1 id="count">0</h1>
+      <button id="add-button">+</button>
+      <button id="sub-button">-</button>
+    </div>
+  </body>
+  <script src="./index.js"></script>
+</html>
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: aliceblue;
+}
+
+.counter-container {
+  text-align: center;
+}
+
+This was very tedious to do even this ismple project
+three separate files for this simple applications

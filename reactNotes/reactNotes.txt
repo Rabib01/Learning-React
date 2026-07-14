@@ -1,0 +1,9 @@
+React is a free and open-source JavaScript library  for building user interfaces based of of components
+It is maintained by merta and a community of individual developers and companies 
+React can be used to develope single-page, mobile or server-rendered applications with frameworks like next.JavaScript
+
+if we used pure or vanilla it willget difficult n the long run. Like tree cutting down woith a saw vvs a chainsaw
+Vue angular or React
+Nest Js and Express
+
+
