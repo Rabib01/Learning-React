@@ -33,6 +33,18 @@ img {
 .container {
   display: flex;
   align-items: center;
+  /* border: 1px solid red; */
+  width: 100%;
+  justify-content: space-between;
+}
+
+.container-part-1 {
+  display: flex;
+  gap: 15px;
+}
+
+.container-part-2 {
+  height: 100%;
 }
 
 li {

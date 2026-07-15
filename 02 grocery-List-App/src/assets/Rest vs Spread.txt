@@ -1,0 +1,186 @@
+Rest vs Spread
+
+This is actually much simpler than it first appears. The biggest source of confusion is that ... looks identical in both cases, but its meaning depends entirely on where it appears.
+
+A good rule is:
+
+Rest = Collect
+
+Spread = Expand
+
+1. Is JavaScript RECEIVING values?
+
+If yes, it's Rest.
+
+You're collecting multiple values into one variable.
+
+function greet(...names) {
+  console.log(names);
+}
+
+greet("Alice", "Bob", "Charlie");
+
+Think:
+
+Alice Bob Charlie
+      ↓
+    names
+
+You're taking many values and putting them into one array.
+
+Another example:
+
+const [first, ...others] = [1, 2, 3, 4];
+1 2 3 4
+↓ ↓↓↓
+first others
+
+others collects everything that's left.
+
+Object destructuring:
+
+const { name, ...rest } = person;
+name age city
+
+ ↓    ↓↓↓
+name  rest
+
+Again, you're collecting the remaining properties.
+
+2. Is JavaScript SENDING values?
+
+If yes, it's Spread.
+
+You're expanding one thing into many values.
+
+Example:
+
+const arr = [1, 2, 3];
+
+console.log(...arr);
+
+Think:
+
+[1,2,3]
+   ↓
+1 2 3
+
+The array is opened up.
+
+Another:
+
+const copy = [...arr];
+[1,2,3]
+   ↓
+1,2,3
+   ↓
+new array
+
+Function call:
+
+const nums = [10, 20, 30];
+
+sum(...nums);
+
+Instead of
+
+sum([10,20,30]);
+
+it becomes
+
+sum(10,20,30);
+A Trick That Never Fails
+
+Ask yourself:
+
+Is the variable on the LEFT side getting bigger?
+
+If yes → Rest
+
+function fn(...args)
+
+args becomes an array.
+
+const [...rest] = arr;
+
+rest becomes an array.
+
+const { ...rest } = obj;
+
+rest becomes an object.
+
+Everything is being collected.
+
+Is the variable on the RIGHT side disappearing?
+
+If yes → Spread
+
+fn(...arr)
+
+The array disappears.
+
+const copy = [...arr];
+
+The array is unpacked.
+
+const obj2 = {
+  ...obj
+}
+
+The object is unpacked.
+
+Here's the easiest memory trick
+
+Imagine a backpack 🎒.
+
+Rest
+
+You're putting lots of things into the backpack.
+
+🍎 🍌 🍇
+   ↓
+🎒
+
+Collect.
+
+Spread
+
+You're emptying the backpack.
+
+🎒
+ ↓
+🍎 🍌 🍇
+
+Expand.
+
+Quick Quiz
+
+What is ... here?
+
+function fn(...args)
+
+➡️ Rest (collecting arguments)
+
+fn(...arr)
+
+➡️ Spread (expanding the array)
+
+const [...x] = arr;
+
+➡️ Rest (collecting remaining elements)
+
+const copy = [...arr];
+
+➡️ Spread (expanding the array into a new one)
+
+const { a, ...rest } = obj;
+
+➡️ Rest (collecting remaining properties)
+
+const obj2 = { ...obj };
+
+➡️ Spread (expanding object properties)
+
+If you remember just one sentence, make it this:
+
+Rest collects values into one variable. Spread expands one variable into many values

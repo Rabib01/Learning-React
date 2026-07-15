@@ -1,0 +1,149 @@
+For input elemments we need two way binding
+2 things when we type anything in input elelment
+
+store that somewhere and then control it somehow(after we have pressed enter make it babk into an empty string ) 
+using the useState hook we need to store that piece of value 
+we are binding hte value of the input to the value of the state, anytime the input changes from ['b','a','n','...'] to something, the state also has to change
+empty the state out and that is also going to completely wipe out the string in input value 
+
+
+1st binding -> use the e.target.value to update the input value using the setInputValue of useState
+
+const handleChangeInputvalue = function (e) {
+    console.log(e.target.value);
+  };
+
+
+const handleChangeInputvalue = function (e) {
+    setInputValue(e.target.value);
+  };
+
+
+2nd wayBinding = 
+
+<input
+            type="text"
+            placeholder="Add an item"
+            className="item-input"
+            onChange={handleChangeInputvalue}
+            value={inutValue}
+          />
+        </div>
+by using value = {inputValue} and so the two way binding is complete
+
+button onChange={()={
+ setInputValue("") ------------------------------------------------- -> this will completely clear the state of input Value hook. This will not change the value of the inputValue field of 
+ 									our html
+ }}
+ 
+2way binding 
+change the value of the input element -> changes the value of the state 
+change the value of the state -> changes the value of hte input element
+
+This is how the two way binding works 
+
+
+if we wanted to change the input Value of the grocery list using normal javaScript we would have used something normally like so :: made use of the push method 
+  const handleAddGroceryItems = function (e) {
+    if (e.key === "Enter") {
+      console.log("Enter Was Pressed");
+      groceryItems.push({
+        quantity: 1,
+        name: inputValue,
+        completed: false,
+      });
+    }
+  };
+  
+  in react we do it like this :: 
+  
+  
+
+  const handleAddGroceryItems = function (e) {
+    if (e.key === "Enter") {
+      SetGroceryItems([
+        ...groceryItems,
+        { name: inutValue, quantity: 1, completedStatus: false },
+      ]);
+    }
+  };
+
+Notes from my buddy GPT
+
+  Think of it this way:
+
+SetGroceryItems([
+  ...groceryItems,
+  { name: inputValue, quantity: 1, completedStatus: false },
+]);
+groceryItems is an array, for example:
+[
+  { name: "Milk" },
+  { name: "Eggs" }
+]
+...groceryItems spreads (expands) the array into its individual elements:
+{ name: "Milk" },
+{ name: "Eggs" }
+So JavaScript sees this:
+[
+  { name: "Milk" },
+  { name: "Eggs" },
+  { name: inputValue, quantity: 1, completedStatus: false }
+]
+Finally, SetGroceryItems() replaces the old state with this new array.
+Why is this spread?
+
+Because you're expanding one array into its elements.
+
+A quick rule to remember:
+
+Spread (...) = Expand one array/object into its contents.
+Rest (...) = Collect multiple values into one variable.
+
+
+The difference :: 
+<ul>{renderGroceryListItemMarkup()}</ul> 								renderGroceryListItemMarkup()
+what is the difference between this and 								This is called invoking the function 
+<ul>{renderGroceryListItemMarkup}</ul> and why is the second one giving me an error ??  		Any time we use a handler if we invoke the function then that is not good because what ends up happening is that 
+													we dont want to call the function right away, we want to call the 
+													function spoecifically when an event happens lin onChange or 
+													onClick, in these situations we are not going to be invoking the functions 
+If we just call the function, it is called as soon as the html is rendered and so it will crash the application ??? \ 									
+
+for remderGroceryListMarkup() -> 
+We are not listening to anything and get its return value which is an array of jsx 
+and rendcer them within the ul
+thus we have the call () right over here
+
+
+Answer :: 							
+You're not calling the function. You're passing the function itself.
+
+It's like writing:
+console.log(Math.random);
+instead of
+console.log(Math.random());
+The first prints the function:
+function random() { ... }
+The second prints a random number.
+
+
+
+App.jsx?t=1784111979460:29 Each child in a list should have a unique "key" prop.
+Check the render method of `App`. See https://react.dev/link/warning-keys for more information.
+
+JSX will remove the main tag and rerender the entire main tag over and over again each time i press enter 
+This makes it very ineffecient and so it will become slow and if we insert a ket there it will 
+remove only the li elements and rerender the li items and not the entrie html, this creates peormance upgrades 
+
+after after 
+
+li key = item.name it removes the above error however upon entering something with the new name again,  i get anotehr error 
+
+App.jsx:29 Encountered two children with the same key, ` cake`. 
+Keys should be unique so that components maintain their identity across updates. 
+Non-unique keys may cause children 
+to be duplicated and/or omitted — the behavior is unsupported and could change in a future version.
+so we are going ot implement the quantity here 
+
+
