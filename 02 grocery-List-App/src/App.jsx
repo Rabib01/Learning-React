@@ -48,12 +48,27 @@ function App() {
     SetGroceryItems(groceryItems.filter((item) => item.name !== name));
   };
 
+  const handleUpdateCompleteStatus = (status, indexOfItem) => {
+    const updatedGroceryList = [...groceryItems];
+    updatedGroceryList[indexOfItem].completedStatus = status;
+    SetGroceryItems(updatedGroceryList);
+  };
+
   const renderGroceryListItemMarkup = () => {
-    return groceryItems.map((item) => (
+    return groceryItems.map((item, idx) => (
       <li key={item.name}>
         <div className="container">
           <div className="container-part-1">
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              onChange={(e) => {
+                // console.log(e.target.checked);
+
+                handleUpdateCompleteStatus(e.target.checked, idx);
+              }}
+              value={item.completedStatus}
+              checked={item.completedStatus}
+            />
             <p>
               {item.name}{" "}
               {/* {item.quantity > 1 ? <span>x{item.quantity}</span> : null} */}
