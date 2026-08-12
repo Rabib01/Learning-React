@@ -1,0 +1,36 @@
+#root {
+  display: flex;
+}
+.parent-container {
+  width: 520px;
+  height: 2300px;
+  border: 1px solid red;
+  margin: 0 auto;
+}
+
+.amount-container {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+}
+
+.inputs {
+  display: flex;
+  justify-content: space-between;
+}
+/* .inputs input {} this is the descendent combinator. Used for deeply neested, all childer */
+/* .inputs > input {} this is the child combinator. direct children */
+.inputs input {
+  border: none;
+  background: transparent;
+  border-bottom: 2px solid #c8bfb0;
+  outline: none;
+  /* padding: 5px 0; */
+}
+
+.inputs input::placeholder {
+  color: #777;
+}
+
+.inputs input:focus {
+  border-bottom: 2px solid #f79e9c;
+}
